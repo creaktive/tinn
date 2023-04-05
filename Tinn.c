@@ -39,7 +39,7 @@ static float pdact(const float a)
 }
 
 // Returns floating point random from 0.0 - 1.0.
-static float frand()
+static float frand(void)
 {
     return rand() / (float) RAND_MAX;
 }
