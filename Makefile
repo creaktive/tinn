@@ -10,6 +10,7 @@ SRC = test.c Tinn.c
 
 all:
 	$(CC) -o $(BIN) $(SRC) $(CFLAGS) $(LDFLAGS)
+	$(CC) -o batch batch.c Tinn.c $(CFLAGS) $(LDFLAGS)
 
 run:
 	./$(BIN)
