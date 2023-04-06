@@ -50,13 +50,19 @@ static void parse(float* data, char* line, const int cols)
 }
 
 // Learns and predicts hand written digits with 98% accuracy.
-int main(void)
+int main(int argc, char** argv)
 {
+    if(argc != 2)
+    {
+        printf("Usage: %s file.dat\n", argv[0]);
+        exit(0);
+    }
+
     sranddev();
 
     const Tinn loaded = xtload("saved.tinn");
 
-    const char* path = "../pianolizer/test.dat";
+    const char* path = argv[1];
     float* in = (float*) malloc(loaded.nips * sizeof(float));
     FILE* file = fopen(path, "r");
     if(file == NULL)
