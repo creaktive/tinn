@@ -43,7 +43,7 @@ static char* readln(FILE* const file)
 {
     int ch = EOF;
     int reads = 0;
-    int size = 128;
+    int size = 2048;
     char* line = (char*) malloc((size) * sizeof(char));
     while((ch = getc(file)) != '\n' && ch != EOF)
     {
