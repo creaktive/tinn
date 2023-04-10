@@ -140,13 +140,19 @@ static Data build(const char* path, const int nips, const int nops)
 }
 
 // Learns and predicts hand written digits with 98% accuracy.
-int main(void)
+int main(int argc, char** argv)
 {
+    if(argc != 2)
+    {
+        printf("Usage: %s file.dat\n", argv[0]);
+        exit(0);
+    }
+
     // Tinn does not seed the random number generator.
     sranddev();
     // Input and output size is harded coded here as machine learning
     // repositories usually don't include the input and output size in the data itself.
-    const int nips = 115;
+    const int nips = 100;
     const int nops = 88;
     // Hyper Parameters.
     // Learning rate is annealed and thus not constant.
@@ -158,7 +164,7 @@ int main(void)
     const float anneal = 0.99f;
     const int iterations = 128;
     // Load the training set.
-    const Data data = build("../pianolizer/test.dat", nips, nops);
+    const Data data = build(argv[1], nips, nops);
     // Train, baby, train.
     const Tinn tinn = xtbuild(nips, nhid, nops);
     for(int i = 0; i < iterations; i++)
