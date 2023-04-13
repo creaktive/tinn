@@ -83,7 +83,18 @@ static void parse(const Data data, char* line, const int row)
         if(col < data.nips)
             data.in[row][col] = val;
         else
-            data.tg[row][col - data.nips] = val;
+            data.tg[row][col - data.nips] = val > 0.0 ? 1.0 : 0.0;
+    }
+    char flag = 0;
+    for(int col = data.nops - 1; col >= 0; col--)
+    {
+        if(data.tg[row][col] != 0.0)
+        {
+            if(flag == 0)
+                flag = 1;
+            else
+                data.tg[row][col] = 0.0;
+        }
     }
 }
 
