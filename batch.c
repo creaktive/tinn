@@ -78,11 +78,19 @@ int main(int argc, char** argv)
         char* line = readln(file);
         parse(in, line, loaded.nips);
         const float* const pd = xtpredict(loaded, in);
+
+        float* out = (float*) malloc(loaded.nops * sizeof(float));
+        float h = 0.0;
+        for(int i = 0; i < loaded.nops; i++)
+            if (h < pd[i])
+                h = pd[i];
+
         for(int i = 0; i < loaded.nips; i++)
             printf("%d ", (unsigned char) (255 * in[i]));
         for(int i = 0; i < loaded.nops; i++)
-            printf("%d ", (unsigned char) (255 * pd[i]));
+            printf(pd[i] == h ? "255 " : "0   ");
         printf("\n");
+        free(out);
         free(line);
     }
     fclose(file);
