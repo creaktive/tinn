@@ -84,6 +84,8 @@ int main(int argc, char** argv)
         for(int i = 0; i < loaded.nops; i++)
             if (h < pd[i])
                 h = pd[i];
+        if(h <= 0.9)
+            h = -1.0;
 
         for(int i = 0; i < loaded.nips; i++)
             printf("%d ", (unsigned char) (255 * in[i]));
